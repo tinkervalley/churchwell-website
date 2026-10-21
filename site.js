@@ -22,14 +22,21 @@ for (const tab of tabs) {
 }
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
+// Content stays visible if scripts, observers or animations are unavailable.
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.classList.add('js-motion');
   const observer = new IntersectionObserver(entries => {
     for (const entry of entries) if (entry.isIntersecting) {
-      entry.target.classList.remove('pending'); observer.unobserve(entry.target);
+      entry.target.classList.add('is-visible'); observer.unobserve(entry.target);
     }
-  }, {threshold:0.08});
+  }, {threshold: 0.08});
   for (const element of document.querySelectorAll('.reveal')) {
-    element.classList.add('pending'); observer.observe(element);
+    if (!element.closest('.hero')) observer.observe(element);
   }
+}
+for (const menu of document.querySelectorAll('.mobile-menu')) {
+  menu.addEventListener('click', event => { if (event.target.closest('a')) menu.open = false; });
+  menu.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.open) { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+  document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
 }

@@ -10,6 +10,8 @@ Buildless HTML/CSS/JavaScript, published to `tinkervalley/churchwell-website` us
 
 Both website and app domains returned HTTPS 200 on October 21, 2026. The website's sign-in links now use the verified app domain. This does not remove the old app domain or rewrite existing public-form links.
 
+Before previewing or publishing, run `node scripts/prepare-site.mjs` from the application repository. It generates content-hashed CSS/JS filenames and updates all three pages. Keep prior generated files so cached HTML continues to find its matching assets; publish the entire `site/` directory together. This avoids Cloudflare/browser caches pairing new HTML with an older stylesheet. Edit `style.css` and `site.js`, not generated copies.
+
 Preview: `python3 -m http.server 5174 --directory site` from the application repository. The support/privacy paths are directories with index files so direct links work on GitHub Pages.
 
 ## Screenshots
@@ -23,3 +25,9 @@ Web captures use the existing `VITE_DEMO_MODE=true` local preview. Native captur
 Planned starting price: CAD $40/month after beta; invited churches test free. No website billing or automatic conversion is implemented. Dedicated branded apps are arranged separately. Competitor sources and date are visible beside the comparison. Breeze currently lists US$72/month, and Planning Center has free core tools plus usage-priced products; no misleading combined total is used.
 
 App Store copy and remaining submission requirements are in `docs/app-store/` in the private application repository. Do not publish private credentials, source files outside `site/`, or review-account secrets to this public repository.
+
+## Visual verification — October 21, 2026
+
+The live audit found newer HTML paired with a cached, older stylesheet. The old stylesheet had no rules for the screenshot wrappers: at a 1280px viewport the page overflowed to 1894px, with a hero over 3800px tall. Content-hashed asset URLs now keep each page paired with its own CSS/JS version, including privacy and support pages.
+
+Reviewed the hero, feature explorer, app showcase, pricing, support and privacy layouts. Checked page/header width at 320, 375, 390, 768, 900, 1024, 1280 and 1440px; no horizontal overflow. Mobile navigation supports links, Escape dismissal and focus return. Feature tabs retain keyboard navigation. Animations enhance visible content instead of hiding it until a script runs. Static asset references, fingerprints and JavaScript syntax are validated before publication.
