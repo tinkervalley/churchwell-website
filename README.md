@@ -1,23 +1,25 @@
-# Churchwell landing page
+# Churchwell public website
 
-Buildless HTML/CSS/JavaScript. Publish these files at the root of the `tinkervalley/churchwell-website` repository. GitHub Pages serves `main` `/` without a custom Actions workflow.
+Buildless HTML/CSS/JavaScript, published to `tinkervalley/churchwell-website` using branch-based GitHub Pages (`main`, `/`). No GitHub Actions workflow is required or enabled by this source.
 
-- Website: `https://churchwell.ca` (set as the Pages custom domain after domain ownership/DNS is confirmed)
-- App: `https://app.churchwell.ca` (Cloudflare Worker custom domain)
-- Invite requests: `hello@churchwell.ca`
+- Website: https://churchwell.ca
+- App: https://app.churchwell.ca
+- Privacy: https://churchwell.ca/privacy
+- Support: https://churchwell.ca/support
+- Contact/invites: hello@churchwell.ca
 
-Interface artwork is illustrative sample content, not private church data. The page does not collect or store visitor submissions. Invite links open the visitor's email client.
+Both website and app domains returned HTTPS 200 on October 21, 2026. The website's sign-in links now use the verified app domain. This does not remove the old app domain or rewrite existing public-form links.
 
-For local preview: `python3 -m http.server 5174 --directory site` from the platform repository.
+Preview: `python3 -m http.server 5174 --directory site` from the application repository. The support/privacy paths are directories with index files so direct links work on GitHub Pages.
 
-Sign-in links currently use the working `https://churchwell.tinkervalley.ca` address until `app.churchwell.ca` is connected. Then replace both `data-app-link` targets.
+## Screenshots
 
-## Domain setup
+`assets/screenshots/` contains actual captures of the current SwiftUI app in the iPhone 14 Plus simulator and the running web interface, captured October 21, 2026. These use fictional sample people and event data, not private church records. No synthetic product UI or generated replacement screenshot is used. The desktop captures retain the sample-data preview notice. Rounded device frames are CSS surrounding the original image.
 
-After confirming ownership of churchwell.ca:
-1. Configure GitHub Pages custom domain `churchwell.ca` and commit a `CNAME` file containing that hostname.
-2. At the DNS provider, add apex A records to 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153. Add `www` CNAME to `tinkervalley.github.io`. Leave these DNS-only while GitHub provisions HTTPS, then enable Enforce HTTPS in Pages.
-3. In Cloudflare → Workers & Pages → churchwell → Settings → Domains & Routes, add custom domain `app.churchwell.ca`. Cloudflare must manage the domain’s zone; it provisions the DNS record and certificate. Keep the existing app hostname available.
-4. Update the landing page sign-in links and iOS CHURCHWELL_WEB_URL after the new app hostname works. Retain old form URLs; do not redirect them until the new route is verified.
+Web captures use the existing `VITE_DEMO_MODE=true` local preview. Native captures use a separately installed simulator bundle with empty Supabase configuration and existing debug section-preview routing; fixture event dates are moved forward in that temporary app bundle. The live app's session, data and backend are untouched. The debug-only section preview also runs after initial layout so child view initialization cannot reset the requested section. Original screenshots are unretouched PNGs.
 
-No registration, nameserver, email/MX, or live DNS changes have been made by this source configuration.
+## Pricing and copy
+
+Planned starting price: CAD $40/month after beta; invited churches test free. No website billing or automatic conversion is implemented. Dedicated branded apps are arranged separately. Competitor sources and date are visible beside the comparison. Breeze currently lists US$72/month, and Planning Center has free core tools plus usage-priced products; no misleading combined total is used.
+
+App Store copy and remaining submission requirements are in `docs/app-store/` in the private application repository. Do not publish private credentials, source files outside `site/`, or review-account secrets to this public repository.

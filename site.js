@@ -20,7 +20,8 @@ for (const tab of tabs) {
     event.preventDefault(); selectTab(tabs[index], true);
   });
 }
-document.getElementById('year').textContent = new Date().getFullYear();
+const year = document.getElementById('year');
+if (year) year.textContent = new Date().getFullYear();
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('js-motion');
   const observer = new IntersectionObserver(entries => {
