@@ -22,7 +22,7 @@ Web captures use the existing `VITE_DEMO_MODE=true` local preview. Native captur
 
 ## Pricing and copy
 
-Planned starting price: CAD $40/month after beta; invited churches test free. No website billing or automatic conversion is implemented. Dedicated branded apps are arranged separately. Competitor sources and date are visible beside the comparison. Breeze currently lists US$72/month, and Planning Center has free core tools plus usage-priced products; no misleading combined total is used.
+Planned starting price: CAD $40/month after beta; invited churches test free. No website billing or automatic conversion is implemented. Dedicated branded apps are arranged separately. The page focuses on Churchwell’s own features rather than competitor comparisons. iOS and Android apps, group and direct chats, Android kiosk check-in, optional Bluetooth thermal labels, and YouTube/podcast media are the main product stories.
 
 App Store copy and remaining submission requirements are in `docs/app-store/` in the private application repository. Do not publish private credentials, source files outside `site/`, or review-account secrets to this public repository.
 
@@ -31,3 +31,9 @@ App Store copy and remaining submission requirements are in `docs/app-store/` in
 The live audit found newer HTML paired with a cached, older stylesheet. The old stylesheet had no rules for the screenshot wrappers: at a 1280px viewport the page overflowed to 1894px, with a hero over 3800px tall. Content-hashed asset URLs now keep each page paired with its own CSS/JS version, including privacy and support pages.
 
 Reviewed the hero, feature explorer, app showcase, pricing, support and privacy layouts. Checked page/header width at 320, 375, 390, 768, 900, 1024, 1280 and 1440px; no horizontal overflow. Mobile navigation supports links, Escape dismissal and focus return. Feature tabs retain keyboard navigation. Animations enhance visible content instead of hiding it until a script runs. Static asset references, fingerprints and JavaScript syntax are validated before publication.
+
+## Kiosk and printer compatibility
+
+The Android kiosk screenshot and sample label were produced by the isolated synthetic kiosk test build on October 24, 2026. They contain sample data only. The MUNBYN ITPP130B is listed as confirmed over Bluetooth LE based on physical printing tests; other Bluetooth thermal printers require compatibility verification. Designs are available for 4 × 6 in and 2.25 × 1.25 in stock. This is not a claim that every Bluetooth printer or paper size has been physically tested.
+
+The Chats screenshot was captured from the sample-data web app on October 24, 2026. The media feature illustration is an editorial graphic, not a fabricated application screenshot.
