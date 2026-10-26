@@ -492,6 +492,7 @@ h3 {
   text-align: center;
 }
 .app-icon {
+  overflow: hidden;
   width: 160px;
   height: 160px;
   display: grid;
@@ -1267,8 +1268,8 @@ footer small {
     border-radius: 30px;
   }
   .app-icon img {
-    width: 82px;
-    height: 82px;
+    width: 125px;
+    height: 125px;
   }
   .featured {
     grid-column: auto;
