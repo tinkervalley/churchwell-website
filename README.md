@@ -14,11 +14,11 @@ Before previewing or publishing, run `node scripts/prepare-site.mjs` from the ap
 
 Preview: `python3 -m http.server 5174 --directory site` from the application repository. The support/privacy paths are directories with index files so direct links work on GitHub Pages.
 
-## Screenshots
+## Screenshots and typography
 
-`assets/screenshots/` contains actual captures of the current SwiftUI app in the iPhone 14 Plus simulator and the running web interface, captured October 21, 2026. These use fictional sample people and event data, not private church records. No synthetic product UI or generated replacement screenshot is used. The desktop captures retain the sample-data preview notice. Rounded device frames are CSS surrounding the original image.
+The October 29 code-first Around the table redesign uses current actual sample-data web Groups, People and Chats captures and native Home, Groups and People screens. Staff & pastors appears before My family. The kiosk and label captures remain the authentic October 24 examples. Responsive WebP exports preserve the interface content; original PNG sources remain available. The source/export manifest is `docs/landing-page-fixes/2026-10-29/assets.json` in the private application repository.
 
-Web captures use the existing `VITE_DEMO_MODE=true` local preview. Native captures use a separately installed simulator bundle with empty Supabase configuration and existing debug section-preview routing; fixture event dates are moved forward in that temporary app bundle. The live app's session, data and backend are untouched. The debug-only section preview also runs after initial layout so child view initialization cannot reset the requested section. Original screenshots are unretouched PNGs.
+Fonts are locally hosted Figtree and Libre Caslon, with OFL licenses alongside. The social preview is a browser-rendered composition of real product screens; its source is `design-assets/marketing/social-preview.html` in the private repository. It contains no generated application UI.
 
 ## Pricing and copy
 
@@ -37,3 +37,7 @@ Reviewed the hero, feature explorer, app showcase, pricing, support and privacy 
 The Android kiosk screenshot and sample label were produced by the isolated synthetic kiosk test build on October 24, 2026. They contain sample data only. The MUNBYN ITPP130B is listed as confirmed over Bluetooth LE based on physical printing tests; other Bluetooth thermal printers require compatibility verification. Designs are available for 4 × 6 in and 2.25 × 1.25 in stock. This is not a claim that every Bluetooth printer or paper size has been physically tested.
 
 The Chats screenshot was captured from the sample-data web app on October 24, 2026. The media feature illustration is an editorial graphic, not a fabricated application screenshot.
+
+## Visual verification — October 29, 2026
+
+Checked the redesigned page at 320, 390, 768, 900, 1024, 1280 and 1440px without horizontal document overflow. Exercised feature-tab keys, mobile menu Enter/Escape/focus return, native FAQ disclosure and Copy email success feedback. Support checked at phone width and privacy at desktop width. Static references and generated fingerprints checked. See `docs/landing-page-fixes/2026-10-29/README.md` in the private repository for evidence and limitations. This redesign has not been published.

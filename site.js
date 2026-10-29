@@ -4,10 +4,16 @@ function selectTab(tab, focus = false) {
     const selected = item === tab;
     item.setAttribute("aria-selected", String(selected));
     item.tabIndex = selected ? 0 : -1;
+    const panel = document.getElementById(item.getAttribute("aria-controls"));
+    panel.classList.toggle("is-selected", selected);
     document.getElementById(item.getAttribute("aria-controls")).hidden =
       !selected;
   }
   if (focus) tab.focus();
+}
+if (tabs.length) {
+  for (const list of document.querySelectorAll('[role="tablist"]')) list.hidden = false;
+  selectTab(tabs.find((tab) => tab.getAttribute("aria-selected") === "true") || tabs[0]);
 }
 for (const tab of tabs) {
   tab.addEventListener("click", () => selectTab(tab));
@@ -25,25 +31,6 @@ for (const tab of tabs) {
 }
 const year = document.getElementById("year");
 if (year) year.textContent = new Date().getFullYear();
-// Content stays visible if scripts, observers or animations are unavailable.
-if (
-  "IntersectionObserver" in window &&
-  !matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries)
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-    },
-    { threshold: 0.08 },
-  );
-  for (const element of document.querySelectorAll(".reveal")) {
-    if (!element.closest(".hero")) observer.observe(element);
-  }
-}
 for (const menu of document.querySelectorAll(".mobile-menu")) {
   menu.addEventListener("click", (event) => {
     if (event.target.closest("a")) menu.open = false;
@@ -56,5 +43,18 @@ for (const menu of document.querySelectorAll(".mobile-menu")) {
   });
   document.addEventListener("click", (event) => {
     if (!menu.contains(event.target)) menu.open = false;
+  });
+}
+
+// A visible email address remains usable if clipboard permission is unavailable.
+for (const button of document.querySelectorAll("[data-copy-email]")) {
+  button.addEventListener("click", async () => {
+    const status = button.closest("[data-invite-contact]").querySelector(".copy-status");
+    try {
+      await navigator.clipboard.writeText("hello@churchwell.ca");
+      status.textContent = "Email address copied.";
+    } catch {
+      status.textContent = "Select and copy hello@churchwell.ca above.";
+    }
   });
 }
